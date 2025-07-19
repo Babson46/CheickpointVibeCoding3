@@ -1,0 +1,1 @@
+J'aimerais que tu analyses, identifies et corriges les bugs de mise en page de code HTML. A la fin, Refactorise-le en un composant réutilisable.

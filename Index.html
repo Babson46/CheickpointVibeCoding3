@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composant Pricing Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .pricing-card {
+            width: 320px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .price .currency {
+            font-size: 18px;
+            vertical-align: top;
+        }
+
+        .price .period {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .pricing-card {
+                width: 100%;
+                max-width: 320px;
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .price {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pricing-card">
+        <h2 class="title">Forfait de base</h2>
+        <p class="price">
+            <span class="currency">$</span>9,99
+            <span class="period">/mois</span>
+        </p>
+
+        <ul class="features">
+            <li>1 Go de stockage</li>
+            <li>Assistance de base</li>
+            <li>Toutes les fonctionnalités principales</li>
+            <li>Support par email</li>
+        </ul>
+
+        <button class="btn">Démarrer l'essai</button>
+    </div>
+
+    <script>
+        function createPricingCard(data) {
+            return `
+                <div class="pricing-card">
+                    <h2 class="title">${data.title}</h2>
+                    <p class="price">
+                        <span class="currency">${data.currency}</span>${data.price}
+                        <span class="period">${data.period}</span>
+                    </p>
+                    <ul class="features">
+                        ${data.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="btn">${data.buttonText}</button>
+                </div>
+            `;
+        }
+
+        const pricingData = {
+            title: "Forfait Premium",
+            price: "19,99",
+            currency: "$",
+            period: "/mois",
+            features: [
+                "10 Go de stockage",
+                "Assistance prioritaire",
+                "Toutes les fonctionnalités",
+                "Support 24/7",
+                "Analytics avancées"
+            ],
+            buttonText: "Choisir Premium"
+        };
+    </script>
+
+</body>
+</html>
